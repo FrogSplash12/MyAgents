@@ -1,0 +1,26 @@
+---
+description: Repository structure and conventions
+globs: ["**/*"]
+---
+
+# AuthKnot Repository Structure
+
+This is a monorepo for the AuthKnot trust infrastructure platform.
+
+## Top-level layout
+
+- `backend/` — FastAPI backend service
+- `worker/` — Async worker tier (graph jobs, batch recomputation, exports)
+- `frontend/operator-console/` — React operator console (shadcn/ui + TanStack Query)
+- `frontend/marketing/` — Marketing site
+- `frontend/trust-profile/` — Public trust profile surface
+- `infra/` — Infrastructure configuration
+- `docs/` — Documentation (PRD, architecture, ADRs, runbooks)
+- `scripts/` — Dev and CI scripts
+
+## Rules
+
+- Do not touch unrelated files when working on a task.
+- Keep backend and frontend concerns strictly separated.
+- All database changes must go through Alembic migrations.
+- Never commit secrets or credentials.

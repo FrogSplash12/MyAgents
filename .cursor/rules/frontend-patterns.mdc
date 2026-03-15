@@ -1,0 +1,20 @@
+---
+description: Frontend coding patterns
+globs: ["frontend/**/*.{ts,tsx}"]
+---
+
+# Frontend Patterns
+
+## Stack
+- React 18+
+- TypeScript (strict mode)
+- shadcn/ui for component foundation
+- TanStack Query for server-state
+- Minimal local UI state (only where necessary)
+
+## Conventions
+- Use functional components only.
+- Use TanStack Query for all server data fetching — do not put async data in global state.
+- Keep components small and focused.
+- Co-locate component tests with components.
+- Use SSE for real-time console updates by default; WebSocket only for bidirectional surfaces.

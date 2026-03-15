@@ -1,0 +1,31 @@
+---
+description: Backend coding patterns
+globs: ["backend/**/*.py"]
+---
+
+# Backend Patterns
+
+## Stack
+- Python 3.12+
+- FastAPI for HTTP API
+- SQLAlchemy 2.0+ with async sessions
+- Alembic for migrations
+- Pydantic v2 for schemas
+- PostgreSQL 16 as primary database
+- Redis for caching and lightweight queuing
+
+## Conventions
+- Use async/await throughout.
+- Use dependency injection via FastAPI Depends().
+- Models go in `backend/app/models/`.
+- Pydantic schemas go in `backend/app/schemas/`.
+- Business logic goes in `backend/app/services/`.
+- API routes go in `backend/app/api/v1/`.
+- Use UUID primary keys for all entities.
+- Use created_at/updated_at timestamps on all tables.
+- Tenant isolation: all queries must be scoped by tenant_id.
+
+## Testing
+- Use pytest with pytest-asyncio.
+- Tests go in `backend/tests/`.
+- Use factory patterns for test data.

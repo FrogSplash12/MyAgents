@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspaces/authknot:cached
+    command: sleep infinity
+    depends_on:
+      - db
+      - redis
+    environment:
+      DATABASE_URL: postgresql+asyncpg://authknot:authknot@db:5432/authknot
+      REDIS_URL: redis://redis:6379/0
+    networks:
+      - authknot
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: authknot
+      POSTGRES_PASSWORD: authknot
+      POSTGRES_DB: authknot
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - authknot
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - authknot
+
+volumes:
+  pgdata:
+
+networks:
+  authknot:
